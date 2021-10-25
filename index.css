@@ -2,3 +2,31 @@ body {
   padding: 10;
   margin: 10;
 }
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 420px;
+  height: 420px;
+  border: solid black;
+}
+
+.grid div {
+  width: 15px;
+  height: 15px;
+}
+
+.wall {
+  background-color: blue;
+}
+
+.goal {
+  background-color: green;
+  border-radius: 7.5px;
+}
+
+.player {
+  background: white;
+  background-image: url("./pacman.png");
+  background-size: cover;
+}
