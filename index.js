@@ -3,11 +3,12 @@ const width = 16;
 const movesDisplay = document.getElementById("moves");
 let squares = [];
 let moves = 0;
-let intervalTime = 100; //snake
-let speed = 0.8; //snake
-let timerId = 0; //snake
-let goalIndex = 0; //snake
-let direction = 1; //snake
+let speed = 30;
+
+let timerId = NaN;
+let goalIndex = 0;
+let direction = 1;
+let playerStartIndex = 52;
 
 const layout = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -19,7 +20,7 @@ const layout = [
   0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1,
 ];
 
 //create level
@@ -42,40 +43,16 @@ function createLevel() {
 }
 createLevel();
 
+//starting position of player
+let playerCurrentIndex = playerStartIndex;
+squares[playerCurrentIndex].classList.add("player");
+
 // down - 40
 // up key - 38
 // left - 37
 // right - 39
 
-//starting position of player
-let playerCurrentIndex = 18;
-squares[playerCurrentIndex].classList.add("player");
-
-// If player has reached the goal, vortex away the player
-function goalReached() {
-  if (squares[playerCurrentIndex].classList.contains("player")) {
-    squares[playerCurrentIndex].classList.remove("player");
-    //remove the eventListener for the control function
-    document.removeEventListener("keyup", control);
-    //tell our player they beat the level
-    alert("Level cleared!");
-  }
-}
-
-function move() {
-  if (
-    (playerCurrentIndex + width >= width * width && direction === width) || //if player has gone out bottom
-    (playerCurrentIndex % width === width - 1 && direction === 1) || //if player has gone out right
-    (playerCurrentIndex % width === 0 && direction === -1) || //if player has gone out left
-    (playerCurrentIndex - width < 0 && direction === -width) || //if player has gone out top
-    squares[playerCurrentIndex + direction].classList.contains("player")
-  )
-    return clearInterval(timerId);
-
-  squares[playerCurrentIndex].classList.add("player");
-}
-
-function control(e) {
+function movePlayer(e) {
   if (e.keyCode === 39) {
     console.log("right pressed");
     direction = 1;
@@ -89,19 +66,41 @@ function control(e) {
     console.log("down pressed");
     direction = +width;
   }
-}
-document.addEventListener("keyup", control);
+  moves++;
+  movesDisplay.innerHTML = moves;
+  clearInterval(timerId);
 
-window.addEventListener(
-  "keydown",
-  function (e) {
-    if (
-      ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(
-        e.code
-      ) > -1
-    ) {
-      e.preventDefault();
+  timerId = setInterval(function () {
+    if (!squares[playerCurrentIndex + direction].classList.contains("wall")) {
+      squares[playerCurrentIndex].classList.remove("player");
+      playerCurrentIndex += direction;
+      squares[playerCurrentIndex].classList.add("player");
     }
-  },
-  false
-);
+    //if the player reaches the goal
+    if (squares[playerCurrentIndex].classList.contains("goal")) {
+      squares[playerCurrentIndex].classList.remove("player");
+      playerCurrentIndex = playerStartIndex;
+      squares[playerCurrentIndex].classList.add("player");
+      //give player a cheer
+      alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
+      return (moves = 0);
+    }
+    // checkForEnteredDeepSpace() here too;
+  }, speed);
+
+  window.addEventListener(
+    "keydown",
+    function (e) {
+      if (
+        ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(
+          e.code
+        ) > -1
+      ) {
+        e.preventDefault();
+      }
+    },
+    false
+  );
+}
+
+document.addEventListener("keyup", movePlayer);
