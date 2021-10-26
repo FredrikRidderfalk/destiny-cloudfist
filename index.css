@@ -16,15 +16,19 @@ body {
 .grid div {
   width: 40px;
   height: 40px;
-  /* animation-duration: 0.7s; */
+}
+
+.in-space {
+  animation: color_change 0.2s 2 alternate;
+  /* transition: animation 1s; */
 }
 
 @keyframes color_change {
   0% {
-    background: transparent;
+    opacity: 1;
   }
   100% {
-    background: magenta;
+    opacity: 0.5;
   }
 }
 

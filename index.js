@@ -101,6 +101,10 @@ function movePlayer(e) {
       squares[playerCurrentIndex].classList.add("player");
 
       flashingGameBoard();
+
+      setTimeout(function () {
+        grid.classList.remove("in-space");
+      }, 400);
     }
 
     // checkForEnteredDeepSpace() here too;
@@ -115,7 +119,7 @@ function resetGame() {
 }
 
 function flashingGameBoard() {
-  grid.style.animation = "color_change 1s 2 alternate";
+  grid.classList.add("in-space");
 }
 
 // this code prevents the window from scrolling around when pressing buttons in the game
