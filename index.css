@@ -16,6 +16,16 @@ body {
 .grid div {
   width: 40px;
   height: 40px;
+  /* animation-duration: 0.7s; */
+}
+
+@keyframes color_change {
+  0% {
+    background: transparent;
+  }
+  100% {
+    background: magenta;
+  }
 }
 
 .wall {
@@ -30,6 +40,10 @@ body {
   border: 5px solid greenyellow;
   box-sizing: border-box;
 }
+
+/* .deep-space {
+  background: limegreen;
+} */
 
 .player {
   background: orange;
