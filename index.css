@@ -63,7 +63,8 @@ body {
 }
 
 .player {
-  background: orange;
+  background-image: url(./img/avatar.png);
+  background-size: cover;
 }
 
 .hud {
