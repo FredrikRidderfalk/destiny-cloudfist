@@ -39,15 +39,28 @@ body {
 }
 
 .goal {
-  background-color: rgb(0, 2, 141);
-  border-radius: 50%;
-  border: 5px solid greenyellow;
-  box-sizing: border-box;
+  background-image: url(./img/vortex.png);
+  background-size: cover;
+  animation: rotate 6s normal linear infinite;
 }
 
-/* .deep-space {
-  background: limegreen;
-} */
+@keyframes rotate {
+  0% {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  25% {
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+  50% {
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+  75% {
+    transform: rotate3d(0, 0, 1, 270deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
 
 .player {
   background: orange;
