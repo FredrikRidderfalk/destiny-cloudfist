@@ -72,34 +72,36 @@ function movePlayer(e) {
       playerCurrentIndex += direction;
       squares[playerCurrentIndex].classList.add("player");
     }
+
     //if the player reaches the goal
     if (squares[playerCurrentIndex].classList.contains("goal")) {
       squares[playerCurrentIndex].classList.remove("player");
       playerCurrentIndex = playerStartIndex;
       squares[playerCurrentIndex].classList.add("player");
+
       //give player a cheer
       setTimeout(function () {
         alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
       }, 10);
-      // alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
       return (moves = 0);
     }
     // checkForEnteredDeepSpace() here too;
   }, speed);
-
-  // window.addEventListener(
-  //   "keydown",
-  //   function (e) {
-  //     if (
-  //       ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(
-  //         e.code
-  //       ) > -1
-  //     ) {
-  //       e.preventDefault();
-  //     }
-  //   },
-  //   false
-  // );
 }
 
 document.addEventListener("keyup", movePlayer);
+
+// this code prevents the window from scrolling around when pressing buttons in the game
+window.addEventListener(
+  "keydown",
+  function (e) {
+    if (
+      ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(
+        e.code
+      ) > -1
+    ) {
+      e.preventDefault();
+    }
+  },
+  false
+);
