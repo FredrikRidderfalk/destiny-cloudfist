@@ -7,7 +7,7 @@ let speed = 30;
 
 let timerId = NaN;
 let goalIndex = 0;
-let direction = 1;
+// let direction = 0;
 let playerStartIndex = 52;
 
 const layout = [
@@ -47,23 +47,19 @@ createLevel();
 let playerCurrentIndex = playerStartIndex;
 squares[playerCurrentIndex].classList.add("player");
 
-// down - 40
-// up key - 38
-// left - 37
 // right - 39
+// up - 38
+// left - 37
+// down - 40
 
 function movePlayer(e) {
   if (e.keyCode === 39) {
-    console.log("right pressed");
     direction = 1;
   } else if (e.keyCode === 38) {
-    console.log("up pressed");
     direction = -width;
   } else if (e.keyCode === 37) {
-    console.log("left pressed");
     direction = -1;
   } else if (e.keyCode === 40) {
-    console.log("down pressed");
     direction = +width;
   }
   moves++;
@@ -82,25 +78,28 @@ function movePlayer(e) {
       playerCurrentIndex = playerStartIndex;
       squares[playerCurrentIndex].classList.add("player");
       //give player a cheer
-      alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
+      setTimeout(function () {
+        alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
+      }, 10);
+      // alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
       return (moves = 0);
     }
     // checkForEnteredDeepSpace() here too;
   }, speed);
 
-  window.addEventListener(
-    "keydown",
-    function (e) {
-      if (
-        ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(
-          e.code
-        ) > -1
-      ) {
-        e.preventDefault();
-      }
-    },
-    false
-  );
+  // window.addEventListener(
+  //   "keydown",
+  //   function (e) {
+  //     if (
+  //       ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(
+  //         e.code
+  //       ) > -1
+  //     ) {
+  //       e.preventDefault();
+  //     }
+  //   },
+  //   false
+  // );
 }
 
 document.addEventListener("keyup", movePlayer);
