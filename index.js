@@ -54,36 +54,60 @@ let layoutLevel3 = [
   0, 1, 0, 0, 0, 1, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0,
   0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
   0, 0, 0, 3, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 3, 1, 1, 1, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3,
+  3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 2, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1,
+];
+
+// level 4
+let layoutLevel4 = [
+  3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 3, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+  0, 3, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 0, 0, 1, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0,
+  0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+  0, 0, 0, 3, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 3, 1, 1, 1, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 3,
+  3, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 1, 1, 0, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1,
+];
+
+// level 5
+let layoutLevel5 = [
+  3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 3, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+  0, 3, 1, 2, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 0, 0, 1, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0,
+  0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+  0, 0, 0, 3, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 3, 1, 1, 1, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3,
   3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1,
 ];
 
 // loads intro screen
-// function loadsIntro() {
-//   grid.classList.remove("grid");
-//   grid.classList.add("aang-meditating");
+function loadsIntro() {
+  grid.classList.remove("grid");
+  grid.classList.add("aang-meditating");
 
-//   setTimeout(function () {
-//     grid.classList.remove("aang-meditating");
-//     grid.classList.add("aang-avatar-state");
-//   }, 4000);
+  setTimeout(function () {
+    grid.classList.remove("aang-meditating");
+    grid.classList.add("aang-avatar-state");
+  }, 4000);
 
-//   setTimeout(function () {
-//     grid.classList.remove("aang-avatar-state");
-//     grid.classList.add("grid");
-//   }, 8000);
-// }
+  setTimeout(function () {
+    grid.classList.remove("aang-avatar-state");
+    grid.classList.add("grid");
+  }, 8000);
+}
 
 //create level
 function createLevel() {
-  //for loop
   for (let i = 0; i < layout.length; i++) {
-    //create a square
     const square = document.createElement("div");
-    //put square in grid
     grid.append(square);
-    //put square in squares array
     squares.push(square);
 
     if (layout[i] === 1) {
@@ -100,6 +124,7 @@ createLevel();
 
 // create level 2
 function createLevel2() {
+  grid.classList.add("level2");
   onLevel1 = false;
   for (let i = 0; i < layoutLevel2.length; i++) {
     const square = document.createElement("div");
@@ -131,14 +156,67 @@ function createLevel3() {
     squares.push(square);
 
     if (layoutLevel3[i] === 1) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
       squares[i].classList.add("wall");
     } else if (layoutLevel3[i] === 2) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
       squares[i].classList.add("goal");
     } else if (layoutLevel3[i] === 3) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
       squares[i].classList.add("deep-space");
+    } else if (layoutLevel3[i] === 0) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
     }
   }
   onLevel3 = true;
+}
+
+// create level 4
+function createLevel4() {
+  onLevel3 = false;
+  for (let i = 0; i < layoutLevel4.length; i++) {
+    const square = document.createElement("div");
+    grid.append(square);
+    squares.push(square);
+
+    if (layoutLevel4[i] === 1) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.add("wall");
+    } else if (layoutLevel4[i] === 2) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.add("goal");
+    } else if (layoutLevel4[i] === 3) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.add("deep-space");
+    } else if (layoutLevel4[i] === 0) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
+    }
+  }
+  onLevel4 = true;
+}
+
+// create level 5
+function createLevel5() {
+  onLevel4 = false;
+  for (let i = 0; i < layoutLevel5.length; i++) {
+    const square = document.createElement("div");
+    grid.append(square);
+    squares.push(square);
+
+    if (layoutLevel5[i] === 1) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.add("wall");
+    } else if (layoutLevel5[i] === 2) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.add("goal");
+    } else if (layoutLevel5[i] === 3) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.add("deep-space");
+    } else if (layoutLevel5[i] === 0) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
+    }
+  }
+  onLevel5 = true;
 }
 
 //starting position of player
@@ -200,6 +278,10 @@ function movePlayer(e) {
         createLevel2();
       } else if (onLevel2) {
         createLevel3();
+      } else if (onLevel3) {
+        createLevel4();
+      } else if (onLevel4) {
+        createLevel5();
       }
     }
 
@@ -220,7 +302,7 @@ function movePlayer(e) {
   }, speed);
 }
 
-document.addEventListener("keydown", movePlayer);
+document.addEventListener("keyup", movePlayer);
 
 function resetGame() {
   moves = "";
