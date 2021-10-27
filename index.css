@@ -1,6 +1,10 @@
 body {
-  padding: 10;
-  margin: 10;
+  margin: 10px;
+}
+
+main {
+  display: flex;
+  margin: 0 auto;
 }
 
 .grid {
@@ -18,9 +22,58 @@ body {
   height: 40px;
 }
 
+.intro {
+  display: flex;
+  flex-wrap: wrap;
+  width: 640px;
+  height: 640px;
+  border: solid black;
+  background-image: url(./img/aang-background.jpg);
+  background-size: cover;
+  opacity: 0;
+  z-index: 100;
+  animation: fade-intro 3s ease-out 1;
+}
+
+@keyframes fade-intro {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.home-screen {
+  display: flex;
+  flex-wrap: wrap;
+  width: 640px;
+  height: 640px;
+  border: solid black;
+  background-color: black;
+  background-image: url(./img/aang-meditating-copy.png);
+  background-size: cover;
+  z-index: 1000;
+  animation: avatar-state 3s ease-out 1;
+}
+
+@keyframes avatar-state {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .in-space {
   animation: color_change 0.2s 2 alternate;
-  /* transition: animation 1s; */
 }
 
 @keyframes color_change {
@@ -76,4 +129,13 @@ body {
   color: red;
   text-shadow: 2px 2px 1px rgb(87, 87, 87);
   letter-spacing: 2px;
+  z-index: 10;
+}
+
+.start-button {
+  position: absolute;
+  top: 150px;
+  left: 320px;
+  padding: 20px 50px;
+  z-index: 9999;
 }

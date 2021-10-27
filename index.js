@@ -4,6 +4,7 @@ const movesDisplay = document.getElementById("moves");
 let squares = [];
 let moves = 0;
 let speed = 30;
+let direction = 0;
 
 let timerId = NaN;
 let goalIndex = 0;
@@ -22,6 +23,23 @@ const layout = [
   3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1,
 ];
+
+// loads intro screen
+function loadsIntro() {
+  grid.classList.remove("grid");
+  grid.classList.add("intro");
+
+  setTimeout(function () {
+    grid.classList.remove("intro");
+    grid.classList.add("home-screen");
+  }, 4000);
+
+  setTimeout(function () {
+    const startButton = document.createElement("button");
+    startButton.classList.add("start-button");
+    grid.append(startButton);
+  }, 6000);
+}
 
 //create level
 function createLevel() {
