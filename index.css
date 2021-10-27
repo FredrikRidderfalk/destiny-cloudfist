@@ -39,7 +39,7 @@ body {
 }
 
 .goal {
-  background-image: url(./img/vortex.png);
+  background-image: url(./img/vortex-ice.png);
   background-size: cover;
   animation: rotate 6s normal linear infinite;
 }
@@ -63,7 +63,7 @@ body {
 }
 
 .player {
-  background-image: url(./img/avatar.png);
+  background-image: url(./img/katara.png);
   background-size: cover;
 }
 

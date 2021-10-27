@@ -84,11 +84,7 @@ function movePlayer(e) {
 
       //give player a cheer
       setTimeout(function () {
-        alert(
-          `Level cleared in ${moves} moves!🥳🥳🥳🥳🥳 Wow habibi, you're so brilliant, my record was  ${
-            moves + 1
-          }!😘`
-        );
+        alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
         resetGame();
       }, 10);
     }
