@@ -7,7 +7,7 @@ main {
   display: flex;
   margin: 0 auto;
   justify-content: center;
-  background-color: white;
+  background-color: black;
 }
 
 .relative-div {
@@ -20,7 +20,13 @@ main {
   flex-wrap: wrap;
   width: 640px;
   height: 640px;
-  border: solid black;
+  border: 6px solid rgb(196, 196, 255);
+  background-image: url(./img/winter-background-2.png);
+  background-size: cover;
+  opacity: 1;
+}
+
+.level2 {
   background-image: url(./img/winter-background-2.png);
   background-size: cover;
 }
@@ -30,18 +36,19 @@ main {
   height: 40px;
 }
 
-.intro {
+.aang-meditating {
   margin: 20px 0;
   display: flex;
   flex-wrap: wrap;
   width: 640px;
   height: 640px;
-  border: solid black;
-  background-image: url(./img/aang-background.jpg);
+  border: 6px solid rgb(196, 196, 255);
+  background-color: black;
+  background-image: url(./img/aang-meditating7.png);
   background-size: cover;
   opacity: 0;
   z-index: 100;
-  animation: fade-intro 3s ease-out 1;
+  animation: fade-intro 4s ease-out 1;
 }
 
 @keyframes fade-intro {
@@ -55,31 +62,37 @@ main {
     opacity: 1;
   }
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }
 
-.home-screen {
+.aang-avatar-state {
   margin: 20px 0;
   display: flex;
   flex-wrap: wrap;
   width: 640px;
   height: 640px;
-  border: solid black;
+  border: 6px solid rgb(196, 196, 255);
   background-color: black;
-  background-image: url(./img/aang-meditating-copy.png);
+  background-image: url(./img/aang-avatar-state6.png);
   background-size: cover;
   z-index: 1000;
   cursor: pointer;
-  animation: avatar-state 3s ease-out 1;
+  animation: avatar-state 4s ease-out 1;
 }
 
 @keyframes avatar-state {
   0% {
     opacity: 0;
   }
-  100% {
+  25% {
     opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
@@ -140,5 +153,5 @@ main {
   color: red;
   text-shadow: 2px 2px 1px rgb(87, 87, 87);
   letter-spacing: 2px;
-  z-index: 100000;
+  /* z-index: 1; */
 }

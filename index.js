@@ -1,10 +1,10 @@
 const grid = document.querySelector(".grid");
-const main = document.querySelector("#main");
+const hudText = document.querySelector("#hud-text");
 const width = 16;
 const movesDisplay = document.getElementById("moves");
 let squares = [];
 let moves = 0;
-let speed = 30;
+let speed = 25;
 let direction = 0;
 
 let timerId = NaN;
@@ -12,6 +12,7 @@ let goalIndex = 0;
 // let direction = 0;
 let playerStartIndex = 52;
 
+// level 1
 const layout = [
   3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   1, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
@@ -25,15 +26,34 @@ const layout = [
   0, 0, 0, 0, 0, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1,
 ];
 
+// level 2
+const layoutLevel2 = [
+  3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 3, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+  0, 3, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 0, 0, 1, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0,
+  0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+  0, 0, 0, 3, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 3, 1, 1, 1, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 3,
+  3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1,
+];
+
 // loads intro screen
 function loadsIntro() {
   grid.classList.remove("grid");
-  grid.classList.add("intro");
+  grid.classList.add("aang-meditating");
 
   setTimeout(function () {
-    grid.classList.remove("intro");
-    grid.classList.add("home-screen");
+    grid.classList.remove("aang-meditating");
+    grid.classList.add("aang-avatar-state");
   }, 4000);
+
+  setTimeout(function () {
+    grid.classList.remove("aang-avatar-state");
+    grid.classList.add("grid");
+  }, 8000);
 }
 
 //create level
@@ -70,15 +90,19 @@ squares[playerCurrentIndex].classList.add("player");
 function movePlayer(e) {
   if (e.keyCode === 39) {
     direction = 1;
+    moves++;
   } else if (e.keyCode === 38) {
     direction = -width;
+    moves++;
   } else if (e.keyCode === 37) {
     direction = -1;
+    moves++;
   } else if (e.keyCode === 40) {
     direction = +width;
+    moves++;
   }
-  moves++;
-  movesDisplay.innerHTML = moves;
+  // moves++;
+  movesDisplay.innerHTML = `Moves: ${moves}`;
   clearInterval(timerId);
 
   timerId = setInterval(function () {
@@ -126,6 +150,7 @@ document.addEventListener("keyup", movePlayer);
 function resetGame() {
   moves = "";
   movesDisplay.innerHTML = moves;
+  hudText = "";
 }
 
 function flashingGameBoard() {
