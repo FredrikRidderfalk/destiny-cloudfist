@@ -1,4 +1,5 @@
 const grid = document.querySelector(".grid");
+const main = document.querySelector("#main");
 const width = 16;
 const movesDisplay = document.getElementById("moves");
 let squares = [];
@@ -33,12 +34,6 @@ function loadsIntro() {
     grid.classList.remove("intro");
     grid.classList.add("home-screen");
   }, 4000);
-
-  setTimeout(function () {
-    const startButton = document.createElement("button");
-    startButton.classList.add("start-button");
-    grid.append(startButton);
-  }, 6000);
 }
 
 //create level

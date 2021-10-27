@@ -1,13 +1,21 @@
 body {
-  margin: 10px;
+  padding: 0;
+  margin: 0;
 }
 
 main {
   display: flex;
   margin: 0 auto;
+  justify-content: center;
+  background-color: white;
+}
+
+.relative-div {
+  position: relative;
 }
 
 .grid {
+  margin: 20px 0;
   display: flex;
   flex-wrap: wrap;
   width: 640px;
@@ -23,6 +31,7 @@ main {
 }
 
 .intro {
+  margin: 20px 0;
   display: flex;
   flex-wrap: wrap;
   width: 640px;
@@ -51,6 +60,7 @@ main {
 }
 
 .home-screen {
+  margin: 20px 0;
   display: flex;
   flex-wrap: wrap;
   width: 640px;
@@ -60,6 +70,7 @@ main {
   background-image: url(./img/aang-meditating-copy.png);
   background-size: cover;
   z-index: 1000;
+  cursor: pointer;
   animation: avatar-state 3s ease-out 1;
 }
 
@@ -122,20 +133,12 @@ main {
 
 .hud {
   position: absolute;
-  top: -10px;
-  left: 25px;
+  top: 5px;
+  left: 20px;
   font-family: monospace;
   font-size: 22px;
   color: red;
   text-shadow: 2px 2px 1px rgb(87, 87, 87);
   letter-spacing: 2px;
-  z-index: 10;
-}
-
-.start-button {
-  position: absolute;
-  top: 150px;
-  left: 320px;
-  padding: 20px 50px;
-  z-index: 9999;
+  z-index: 100000;
 }
