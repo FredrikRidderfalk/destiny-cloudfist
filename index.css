@@ -186,3 +186,33 @@ main {
   background-image: url(./img/vortex-earth.png);
   background-size: cover;
 }
+
+.level4 {
+  background-image: url(./img/aang-background.jpg);
+  background-size: cover;
+}
+
+.wallLevel4 {
+  background-image: url(./img/wall-air.png);
+  background-size: cover;
+}
+
+.goalLevel4 {
+  background-image: url(./img/vortex-air.png);
+  background-size: cover;
+}
+
+.level5 {
+  background-image: url(./img/fire-wallpaper.jpg);
+  background-size: cover;
+}
+
+.wallLevel5 {
+  background-image: url(./img/wall-fire.png);
+  background-size: cover;
+}
+
+.goalLevel5 {
+  background-image: url(./img/vortex-fire.png);
+  background-size: cover;
+}
