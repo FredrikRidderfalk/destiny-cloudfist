@@ -157,13 +157,8 @@ main {
   background-size: cover;
 }
 
-.level3 {
-  background-image: url(./img/wallpaper.jpeg);
-  background-size: cover;
-}
-
 .wallLevel2 {
-  background-image: url(./img/winter-wall-1.png);
+  background-image: url(./img/wall-ice-2.png);
   background-size: cover;
 }
 
@@ -172,12 +167,22 @@ main {
   background-size: cover;
 }
 
+.level3 {
+  background-image: url(./img/wallpaper.jpeg);
+  background-size: cover;
+}
+
+.playerLevel3 {
+  background-image: url(./img/appa.png);
+  background-size: cover;
+}
+
 .wallLevel3 {
-  background-image: url(./img/winter-wall-1.png);
+  background-image: url(./img/wall-earth-1.png);
   background-size: cover;
 }
 
 .goalLevel3 {
-  background-image: url(./img/vortex-air.png);
+  background-image: url(./img/vortex-earth.png);
   background-size: cover;
 }

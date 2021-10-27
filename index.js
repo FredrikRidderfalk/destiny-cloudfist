@@ -2,6 +2,7 @@ const grid = document.querySelector(".grid");
 const hudText = document.querySelector("#hud-text");
 const width = 16;
 const movesDisplay = document.getElementById("moves");
+const hero = document.querySelector(".player");
 let squares = [];
 let moves = 0;
 let speed = 25;
@@ -33,16 +34,16 @@ let layout = [
 
 // level 2
 let layoutLevel2 = [
-  3, 3, 3, 3, 1, 1, 0, 0, 0, 1, 1, 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-  1, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 3, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+  3, 3, 3, 3, 1, 1, 3, 3, 3, 1, 1, 3, 3, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 2, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
+  0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0,
   0, 3, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0,
-  0, 1, 0, 0, 0, 1, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0,
-  0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-  0, 0, 0, 3, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 3, 1, 1, 1, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3,
-  3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1,
+  0, 1, 0, 0, 0, 1, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0,
+  0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+  0, 0, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 3, 3, 1, 1, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+  3, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3,
 ];
 
 // level 3
@@ -156,6 +157,14 @@ function createLevel2() {
 
 // create level 3
 function createLevel3() {
+  grid.classList.add("level3");
+
+  // this block sets a new starting position for this level
+  squares[playerCurrentIndex].classList.remove("player");
+  playerStartIndex = 227;
+  playerCurrentIndex = playerStartIndex;
+  squares[playerCurrentIndex].classList.add("player");
+
   onLevel2 = false;
   for (let i = 0; i < layoutLevel3.length; i++) {
     const square = document.createElement("div");
@@ -163,16 +172,40 @@ function createLevel3() {
     squares.push(square);
 
     if (layoutLevel3[i] === 1) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
-      squares[i].classList.add("wall");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel2",
+        "goal",
+        "goalLevel2",
+        "deep-space"
+      );
+      squares[i].classList.add("wall", "wallLevel3");
     } else if (layoutLevel3[i] === 2) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
-      squares[i].classList.add("goal");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel2",
+        "goal",
+        "goalLevel2",
+        "deep-space"
+      );
+      squares[i].classList.add("goal", "goalLevel3");
     } else if (layoutLevel3[i] === 3) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel2",
+        "goal",
+        "goalLevel2",
+        "deep-space"
+      );
       squares[i].classList.add("deep-space");
     } else if (layoutLevel3[i] === 0) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel2",
+        "goal",
+        "goalLevel2",
+        "deep-space"
+      );
     }
   }
   onLevel3 = true;
@@ -276,9 +309,9 @@ function movePlayer(e) {
       squares[playerCurrentIndex].classList.add("player");
 
       //give player a cheer
-      setTimeout(function () {
-        alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
-      }, 50);
+      // setTimeout(function () {
+      //   alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
+      // }, 50);
       resetGame();
 
       if (onLevel1) {
