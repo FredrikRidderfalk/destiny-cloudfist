@@ -125,6 +125,13 @@ createLevel();
 // create level 2
 function createLevel2() {
   grid.classList.add("level2");
+
+  // this block sets a new starting position for this level
+  squares[playerCurrentIndex].classList.remove("player");
+  playerStartIndex = 21;
+  playerCurrentIndex = playerStartIndex;
+  squares[playerCurrentIndex].classList.add("player");
+
   onLevel1 = false;
   for (let i = 0; i < layoutLevel2.length; i++) {
     const square = document.createElement("div");
@@ -133,10 +140,10 @@ function createLevel2() {
 
     if (layoutLevel2[i] === 1) {
       squares[i].classList.remove("wall", "goal", "deep-space");
-      squares[i].classList.add("wall");
+      squares[i].classList.add("wall", "wallLevel2");
     } else if (layoutLevel2[i] === 2) {
       squares[i].classList.remove("wall", "goal", "deep-space");
-      squares[i].classList.add("goal");
+      squares[i].classList.add("goal", "goalLevel2");
     } else if (layoutLevel2[i] === 3) {
       squares[i].classList.remove("wall", "goal", "deep-space");
       squares[i].classList.add("deep-space");
@@ -271,7 +278,7 @@ function movePlayer(e) {
       //give player a cheer
       setTimeout(function () {
         alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
-      }, 10);
+      }, 50);
       resetGame();
 
       if (onLevel1) {

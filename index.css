@@ -26,11 +26,6 @@ main {
   opacity: 1;
 }
 
-.level2 {
-  background-image: url(./img/winter-background-1.png);
-  background-size: cover;
-}
-
 .grid div {
   width: 40px;
   height: 40px;
@@ -109,7 +104,7 @@ main {
 }
 
 .wall {
-  background-color: blue;
+  /* background-color: blue; */
   background-image: url(./img/winter-wall-1.png);
   background-size: cover;
 }
@@ -153,4 +148,36 @@ main {
   text-shadow: 2px 2px 1px rgb(87, 87, 87);
   letter-spacing: 2px;
   /* z-index: 1; */
+}
+
+/* Level design */
+
+.level2 {
+  background-image: url(./img/winter-background-1.png);
+  background-size: cover;
+}
+
+.level3 {
+  background-image: url(./img/wallpaper.jpeg);
+  background-size: cover;
+}
+
+.wallLevel2 {
+  background-image: url(./img/winter-wall-1.png);
+  background-size: cover;
+}
+
+.goalLevel2 {
+  background-image: url(./img/vortex-ice.png);
+  background-size: cover;
+}
+
+.wallLevel3 {
+  background-image: url(./img/winter-wall-1.png);
+  background-size: cover;
+}
+
+.goalLevel3 {
+  background-image: url(./img/vortex-air.png);
+  background-size: cover;
 }
