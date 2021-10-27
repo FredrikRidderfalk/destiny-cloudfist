@@ -48,15 +48,15 @@ let layoutLevel2 = [
 
 // level 3
 let layoutLevel3 = [
-  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 0, 1, 0, 0, 0, 0, 0, 0,
-  0, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 0, 0, 0,
-  0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 1, 0, 1, 1, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0,
   0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 1, 1, 1,
-  1, 1, 1, 0, 1, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 3, 3, 1,
-  0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
-  0, 1, 1, 3, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 1, 0,
-  0, 0, 0, 0, 1, 0, 0, 1, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-  3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 1, 0, 1, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 3, 3, 0,
+  0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+  1, 1, 1, 3, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 1, 0,
+  0, 0, 0, 0, 1, 0, 0, 1, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+  3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3,
 ];
 
@@ -161,7 +161,7 @@ function createLevel3() {
 
   // this block sets a new starting position for this level
   squares[playerCurrentIndex].classList.remove("player");
-  playerStartIndex = 26;
+  playerStartIndex = 21;
   playerCurrentIndex = playerStartIndex;
   squares[playerCurrentIndex].classList.add("player");
 
@@ -213,6 +213,14 @@ function createLevel3() {
 
 // create level 4
 function createLevel4() {
+  grid.classList.add("level4");
+
+  // this block sets a new starting position for this level
+  squares[playerCurrentIndex].classList.remove("player");
+  playerStartIndex = 21;
+  playerCurrentIndex = playerStartIndex;
+  squares[playerCurrentIndex].classList.add("player");
+
   onLevel3 = false;
   for (let i = 0; i < layoutLevel4.length; i++) {
     const square = document.createElement("div");
@@ -220,16 +228,40 @@ function createLevel4() {
     squares.push(square);
 
     if (layoutLevel4[i] === 1) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
-      squares[i].classList.add("wall");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel3",
+        "goal",
+        "goalLevel3",
+        "deep-space"
+      );
+      squares[i].classList.add("wall", "wallLevel4");
     } else if (layoutLevel4[i] === 2) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
-      squares[i].classList.add("goal");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel3",
+        "goal",
+        "goalLevel3",
+        "deep-space"
+      );
+      squares[i].classList.add("goal", "goalLevel4");
     } else if (layoutLevel4[i] === 3) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel3",
+        "goal",
+        "goalLevel3",
+        "deep-space"
+      );
       squares[i].classList.add("deep-space");
     } else if (layoutLevel4[i] === 0) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel3",
+        "goal",
+        "goalLevel3",
+        "deep-space"
+      );
     }
   }
   onLevel4 = true;
@@ -237,6 +269,14 @@ function createLevel4() {
 
 // create level 5
 function createLevel5() {
+  grid.classList.add("level5");
+
+  // this block sets a new starting position for this level
+  squares[playerCurrentIndex].classList.remove("player");
+  playerStartIndex = 21;
+  playerCurrentIndex = playerStartIndex;
+  squares[playerCurrentIndex].classList.add("player");
+
   onLevel4 = false;
   for (let i = 0; i < layoutLevel5.length; i++) {
     const square = document.createElement("div");
@@ -244,16 +284,40 @@ function createLevel5() {
     squares.push(square);
 
     if (layoutLevel5[i] === 1) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
-      squares[i].classList.add("wall");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel4",
+        "goal",
+        "goalLevel4",
+        "deep-space"
+      );
+      squares[i].classList.add("wall", "wallLevel5");
     } else if (layoutLevel5[i] === 2) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
-      squares[i].classList.add("goal");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel4",
+        "goal",
+        "goalLevel4",
+        "deep-space"
+      );
+      squares[i].classList.add("goal", "goalLevel5");
     } else if (layoutLevel5[i] === 3) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel4",
+        "goal",
+        "goalLevel4",
+        "deep-space"
+      );
       squares[i].classList.add("deep-space");
     } else if (layoutLevel5[i] === 0) {
-      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel4",
+        "goal",
+        "goalLevel4",
+        "deep-space"
+      );
     }
   }
   onLevel5 = true;
