@@ -9,11 +9,16 @@ let direction = 0;
 
 let timerId = NaN;
 let goalIndex = 0;
-// let direction = 0;
 let playerStartIndex = 52;
 
+let onLevel1 = true;
+let onLevel2 = false;
+let onLevel3 = false;
+let onLevel4 = false;
+let onLevel5 = false;
+
 // level 1
-const layout = [
+let layout = [
   3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   1, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
@@ -27,7 +32,7 @@ const layout = [
 ];
 
 // level 2
-const layoutLevel2 = [
+let layoutLevel2 = [
   3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   1, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 3, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
@@ -68,15 +73,41 @@ function createLevel() {
     squares.push(square);
 
     if (layout[i] === 1) {
-      squares[i].classList.add("wall");
+      squares[i].classList.add("wall", "square");
     } else if (layout[i] === 2) {
-      squares[i].classList.add("goal");
+      squares[i].classList.add("goal", "square");
     } else if (layout[i] === 3) {
-      squares[i].classList.add("deep-space");
+      squares[i].classList.add("deep-space", "square");
     }
   }
 }
 createLevel();
+
+// remove level 1
+function removeLevel1() {
+  const squareLevel1 = document.querySelector(".square");
+  for (let i = 0; i < layout.length; i++) {
+    squareLevel1.remove();
+    let squares = [];
+  }
+}
+
+// create level 2
+function createLevel2() {
+  for (let i = 0; i < layoutLevel2.length; i++) {
+    const square = document.createElement("div");
+    grid.append(square);
+    squares.push(square);
+
+    if (layoutLevel2[i] === 1) {
+      squares[i].classList.add("wall");
+    } else if (layoutLevel2[i] === 2) {
+      squares[i].classList.add("goal");
+    } else if (layoutLevel2[i] === 3) {
+      squares[i].classList.add("deep-space");
+    }
+  }
+}
 
 //starting position of player
 let playerCurrentIndex = playerStartIndex;
@@ -122,7 +153,8 @@ function movePlayer(e) {
       //give player a cheer
       setTimeout(function () {
         alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
-        resetGame();
+        // removeLevel1();
+        createLevel();
       }, 10);
     }
 

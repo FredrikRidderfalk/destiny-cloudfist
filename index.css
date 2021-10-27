@@ -77,7 +77,6 @@ main {
   background-image: url(./img/aang-avatar-state6.png);
   background-size: cover;
   z-index: 1000;
-  cursor: pointer;
   animation: avatar-state 4s ease-out 1;
 }
 
