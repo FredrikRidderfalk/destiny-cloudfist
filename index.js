@@ -11,7 +11,7 @@ let timerId = NaN;
 let goalIndex = 0;
 let playerStartIndex = 52;
 
-let onLevel1 = true;
+let onLevel1 = false;
 let onLevel2 = false;
 let onLevel3 = false;
 let onLevel4 = false;
@@ -33,6 +33,20 @@ let layout = [
 
 // level 2
 let layoutLevel2 = [
+  3, 3, 3, 3, 1, 1, 0, 0, 0, 1, 1, 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+  1, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 3, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+  0, 3, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 0, 0, 1, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0,
+  0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+  0, 0, 0, 3, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 3, 1, 1, 1, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3,
+  3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1,
+];
+
+// level 3
+let layoutLevel3 = [
   3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   1, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 3, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
@@ -40,26 +54,26 @@ let layoutLevel2 = [
   0, 1, 0, 0, 0, 1, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0,
   0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
   0, 0, 0, 3, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 3, 1, 1, 1, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 3,
+  0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 3,
   3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1,
 ];
 
 // loads intro screen
-function loadsIntro() {
-  grid.classList.remove("grid");
-  grid.classList.add("aang-meditating");
+// function loadsIntro() {
+//   grid.classList.remove("grid");
+//   grid.classList.add("aang-meditating");
 
-  setTimeout(function () {
-    grid.classList.remove("aang-meditating");
-    grid.classList.add("aang-avatar-state");
-  }, 4000);
+//   setTimeout(function () {
+//     grid.classList.remove("aang-meditating");
+//     grid.classList.add("aang-avatar-state");
+//   }, 4000);
 
-  setTimeout(function () {
-    grid.classList.remove("aang-avatar-state");
-    grid.classList.add("grid");
-  }, 8000);
-}
+//   setTimeout(function () {
+//     grid.classList.remove("aang-avatar-state");
+//     grid.classList.add("grid");
+//   }, 8000);
+// }
 
 //create level
 function createLevel() {
@@ -73,40 +87,58 @@ function createLevel() {
     squares.push(square);
 
     if (layout[i] === 1) {
-      squares[i].classList.add("wall", "square");
+      squares[i].classList.add("wall");
     } else if (layout[i] === 2) {
-      squares[i].classList.add("goal", "square");
+      squares[i].classList.add("goal");
     } else if (layout[i] === 3) {
-      squares[i].classList.add("deep-space", "square");
+      squares[i].classList.add("deep-space");
     }
   }
+  onLevel1 = true;
 }
 createLevel();
 
-// remove level 1
-function removeLevel1() {
-  const squareLevel1 = document.querySelector(".square");
-  for (let i = 0; i < layout.length; i++) {
-    squareLevel1.remove();
-    let squares = [];
-  }
-}
-
 // create level 2
 function createLevel2() {
+  onLevel1 = false;
   for (let i = 0; i < layoutLevel2.length; i++) {
     const square = document.createElement("div");
     grid.append(square);
     squares.push(square);
 
     if (layoutLevel2[i] === 1) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
       squares[i].classList.add("wall");
     } else if (layoutLevel2[i] === 2) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
       squares[i].classList.add("goal");
     } else if (layoutLevel2[i] === 3) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
+      squares[i].classList.add("deep-space");
+    } else if (layoutLevel2[i] === 0) {
+      squares[i].classList.remove("wall", "goal", "deep-space");
+    }
+  }
+  onLevel2 = true;
+}
+
+// create level 3
+function createLevel3() {
+  onLevel2 = false;
+  for (let i = 0; i < layoutLevel3.length; i++) {
+    const square = document.createElement("div");
+    grid.append(square);
+    squares.push(square);
+
+    if (layoutLevel3[i] === 1) {
+      squares[i].classList.add("wall");
+    } else if (layoutLevel3[i] === 2) {
+      squares[i].classList.add("goal");
+    } else if (layoutLevel3[i] === 3) {
       squares[i].classList.add("deep-space");
     }
   }
+  onLevel3 = true;
 }
 
 //starting position of player
@@ -121,16 +153,24 @@ squares[playerCurrentIndex].classList.add("player");
 function movePlayer(e) {
   if (e.keyCode === 39) {
     direction = 1;
-    moves++;
+    if (!squares[playerCurrentIndex + direction].classList.contains("wall")) {
+      moves++;
+    }
   } else if (e.keyCode === 38) {
     direction = -width;
-    moves++;
+    if (!squares[playerCurrentIndex + direction].classList.contains("wall")) {
+      moves++;
+    }
   } else if (e.keyCode === 37) {
     direction = -1;
-    moves++;
+    if (!squares[playerCurrentIndex + direction].classList.contains("wall")) {
+      moves++;
+    }
   } else if (e.keyCode === 40) {
     direction = +width;
-    moves++;
+    if (!squares[playerCurrentIndex + direction].classList.contains("wall")) {
+      moves++;
+    }
   }
   // moves++;
   movesDisplay.innerHTML = `Moves: ${moves}`;
@@ -153,9 +193,14 @@ function movePlayer(e) {
       //give player a cheer
       setTimeout(function () {
         alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
-        // removeLevel1();
-        createLevel();
       }, 10);
+      resetGame();
+
+      if (onLevel1) {
+        createLevel2();
+      } else if (onLevel2) {
+        createLevel3();
+      }
     }
 
     //if the player heads out into deep-space
@@ -172,17 +217,15 @@ function movePlayer(e) {
         resetGame();
       }, 400);
     }
-
-    // checkForEnteredDeepSpace() here too;
   }, speed);
 }
 
-document.addEventListener("keyup", movePlayer);
+document.addEventListener("keydown", movePlayer);
 
 function resetGame() {
   moves = "";
   movesDisplay.innerHTML = moves;
-  hudText = "";
+  // hudText = "";
 }
 
 function flashingGameBoard() {
