@@ -200,6 +200,7 @@ main {
 .goalLevel4 {
   background-image: url(./img/vortex-air.png);
   background-size: cover;
+  animation: rotate 2s normal linear infinite;
 }
 
 .level5 {
@@ -215,4 +216,5 @@ main {
 .goalLevel5 {
   background-image: url(./img/vortex-fire.png);
   background-size: cover;
+  animation: rotate 0.75s normal linear infinite;
 }
