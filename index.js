@@ -8,6 +8,8 @@ const moveRightSound = document.getElementById("audio-move-right");
 const moveUpSound = document.getElementById("audio-move-up");
 const moveDownSound = document.getElementById("audio-move-down");
 const gameMusic = document.getElementById("game-music");
+const deepSpaceSound = document.getElementById("audio-deep-space");
+// const victorySound = document.getElementById("audio-victory");
 let squares = [];
 let moves = 0;
 let speed = 25;
@@ -22,6 +24,14 @@ let onLevel2 = false;
 let onLevel3 = false;
 let onLevel4 = false;
 let onLevel5 = false;
+
+gameMusic.loop = true;
+gameMusic.volume = 0.2;
+moveLeftSound.volume = 0.2;
+moveRightSound.volume = 0.2;
+moveUpSound.volume = 0.2;
+moveDownSound.volume = 0.2;
+deepSpaceSound.volume = 0.2;
 
 // level 1
 let layout = [
@@ -53,12 +63,12 @@ let layoutLevel2 = [
 
 // level 3
 let layoutLevel3 = [
-  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 1, 0, 1, 1, 0, 0, 0, 0, 0,
+  3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 1, 3, 3, 3, 3, 3, 1, 0, 1, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0,
-  0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 1, 1, 1,
+  0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 1, 0, 0,
   1, 1, 1, 0, 1, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 3, 3, 0,
-  0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+  0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
   1, 1, 1, 3, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 1, 0,
   0, 0, 0, 0, 1, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3,
   3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0,
@@ -67,35 +77,34 @@ let layoutLevel3 = [
 
 // level 4
 let layoutLevel4 = [
-  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 1, 0, 1, 1, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0,
-  0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 1, 1, 1,
-  1, 1, 1, 0, 1, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 3, 3, 0,
-  0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
-  1, 1, 1, 3, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 1, 0,
-  0, 0, 0, 0, 1, 0, 0, 1, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-  3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3,
+  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 0, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 0, 0, 0,
+  0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 3, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0,
+  0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 1,
+  0, 0, 0, 0, 1, 2, 1, 0, 1, 0, 0, 0, 0, 1, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 3, 3, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 3, 0, 0, 0, 1, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3,
+  3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 3, 0, 0, 0, 1, 1, 0, 0, 0, 0,
+  0, 0, 0, 0, 1, 3, 3, 1, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 1, 3, 3, 3,
 ];
 
 // level 5
 let layoutLevel5 = [
-  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 1, 0, 1, 1, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0,
-  0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 1, 1, 1,
-  1, 1, 1, 0, 1, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 3, 3, 0,
-  0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
-  1, 1, 1, 3, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 1, 0,
-  0, 0, 0, 0, 1, 0, 0, 1, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-  3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3,
+  1, 1, 1, 1, 1, 1, 3, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 1, 3, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 3, 1, 0, 0, 0,
+  1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+  0, 3, 3, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 3, 1, 0, 0, 0, 1, 0, 0,
+  0, 0, 0, 0, 0, 1, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 3, 0,
+  1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 3, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+  1, 0, 0, 3, 3, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0,
+  0, 1, 0, 0, 1, 0, 0, 0, 0, 3, 3, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+  3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 0, 0, 0, 2, 1, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 1, 3, 3, 1, 1,
 ];
 
 // loads intro screen
 function loadsIntro() {
-  gameMusic.loop = true;
   gameMusic.play();
   grid.classList.remove("grid");
   grid.classList.add("aang-meditating");
@@ -168,7 +177,7 @@ function createLevel3() {
 
   // this block sets a new starting position for this level
   squares[playerCurrentIndex].classList.remove("player");
-  playerStartIndex = 21;
+  playerStartIndex = 141;
   playerCurrentIndex = playerStartIndex;
   squares[playerCurrentIndex].classList.add("player");
 
@@ -224,7 +233,7 @@ function createLevel4() {
 
   // this block sets a new starting position for this level
   squares[playerCurrentIndex].classList.remove("player");
-  playerStartIndex = 21;
+  playerStartIndex = 225;
   playerCurrentIndex = playerStartIndex;
   squares[playerCurrentIndex].classList.add("player");
 
@@ -280,7 +289,7 @@ function createLevel5() {
 
   // this block sets a new starting position for this level
   squares[playerCurrentIndex].classList.remove("player");
-  playerStartIndex = 21;
+  playerStartIndex = 17;
   playerCurrentIndex = playerStartIndex;
   squares[playerCurrentIndex].classList.add("player");
 
@@ -328,6 +337,49 @@ function createLevel5() {
     }
   }
   onLevel5 = true;
+}
+
+// create victory screen
+function createLevel5() {
+  grid.classList.add("victory-screen");
+
+  squares[playerCurrentIndex].classList.remove("player");
+
+  for (let i = 0; i < layoutLevel5.length; i++) {
+    if (layoutLevel5[i] === 1) {
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel4",
+        "goal",
+        "goalLevel4",
+        "deep-space"
+      );
+    } else if (layoutLevel5[i] === 2) {
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel4",
+        "goal",
+        "goalLevel4",
+        "deep-space"
+      );
+    } else if (layoutLevel5[i] === 3) {
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel4",
+        "goal",
+        "goalLevel4",
+        "deep-space"
+      );
+    } else if (layoutLevel5[i] === 0) {
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel4",
+        "goal",
+        "goalLevel4",
+        "deep-space"
+      );
+    }
+  }
 }
 
 //starting position of player
@@ -383,6 +435,8 @@ function movePlayer(e) {
       direction = 0;
       squares[playerCurrentIndex].classList.add("player");
 
+      // victorySound.play();
+
       //give player a cheer
       // setTimeout(function () {
       //   alert(`Level cleared in ${moves} moves!🥳🥳🥳🥳🥳`);
@@ -397,6 +451,8 @@ function movePlayer(e) {
         createLevel4();
       } else if (onLevel4) {
         createLevel5();
+      } else if (onLevel5) {
+        createVictoryScreen();
       }
     }
 
@@ -406,6 +462,8 @@ function movePlayer(e) {
       playerCurrentIndex = playerStartIndex;
       direction = 0;
       squares[playerCurrentIndex].classList.add("player");
+
+      deepSpaceSound.play();
 
       flashingGameBoard();
 

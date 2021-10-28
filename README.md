@@ -47,6 +47,7 @@ I want to add more levels with increasing complexity.
 ### Useful resources
 
 - [Pixel Art Maker](http://pixelartmaker.com/) - I made my pixel art using Pixel Art Maker.
+- [Mixkit](https://mixkit.co/) - The library used for all sound effects and game music.
 
 ## Author
 
