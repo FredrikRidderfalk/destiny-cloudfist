@@ -32,6 +32,7 @@ moveRightSound.volume = 0.2;
 moveUpSound.volume = 0.2;
 moveDownSound.volume = 0.2;
 deepSpaceSound.volume = 0.2;
+// gameMusic.play();
 
 // level 1
 let layout = [
@@ -105,7 +106,6 @@ let layoutLevel5 = [
 
 // loads intro screen
 function loadsIntro() {
-  gameMusic.play();
   grid.classList.remove("grid");
   grid.classList.add("aang-meditating");
 
