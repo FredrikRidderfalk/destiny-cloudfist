@@ -340,7 +340,7 @@ function createLevel5() {
 }
 
 // create victory screen
-function createLevel5() {
+function createVictoryScreen() {
   grid.classList.add("victory-screen");
 
   squares[playerCurrentIndex].classList.remove("player");
@@ -349,37 +349,38 @@ function createLevel5() {
     if (layoutLevel5[i] === 1) {
       squares[i].classList.remove(
         "wall",
-        "wallLevel4",
+        "wallLevel5",
         "goal",
-        "goalLevel4",
+        "goalLevel5",
         "deep-space"
       );
     } else if (layoutLevel5[i] === 2) {
       squares[i].classList.remove(
         "wall",
-        "wallLevel4",
+        "wallLevel5",
         "goal",
-        "goalLevel4",
+        "goalLevel5",
         "deep-space"
       );
     } else if (layoutLevel5[i] === 3) {
       squares[i].classList.remove(
         "wall",
-        "wallLevel4",
+        "wallLevel5",
         "goal",
-        "goalLevel4",
+        "goalLevel5",
         "deep-space"
       );
     } else if (layoutLevel5[i] === 0) {
       squares[i].classList.remove(
         "wall",
-        "wallLevel4",
+        "wallLevel5",
         "goal",
-        "goalLevel4",
+        "goalLevel5",
         "deep-space"
       );
     }
   }
+  document.removeEventListener("keyup", movePlayer);
 }
 
 //starting position of player
