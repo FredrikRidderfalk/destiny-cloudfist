@@ -8,6 +8,7 @@ const moveRightSound = document.getElementById("audio-move-right");
 const moveUpSound = document.getElementById("audio-move-up");
 const moveDownSound = document.getElementById("audio-move-down");
 const gameMusic = document.getElementById("game-music");
+let count = 0;
 const deepSpaceSound = document.getElementById("audio-deep-space");
 // const victorySound = document.getElementById("audio-victory");
 let squares = [];
@@ -24,15 +25,15 @@ let onLevel2 = false;
 let onLevel3 = false;
 let onLevel4 = false;
 let onLevel5 = false;
+let onLevel6 = false;
 
 gameMusic.loop = true;
-gameMusic.volume = 0.2;
+gameMusic.volume = 0.08;
 moveLeftSound.volume = 0.2;
 moveRightSound.volume = 0.2;
 moveUpSound.volume = 0.2;
 moveDownSound.volume = 0.2;
 deepSpaceSound.volume = 0.2;
-// gameMusic.play();
 
 // level 1
 let layout = [
@@ -104,6 +105,20 @@ let layoutLevel5 = [
   1, 0, 0, 0, 2, 1, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 1, 3, 3, 1, 1,
 ];
 
+// level 5
+let layoutLevel6 = [
+  3, 3, 1, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3, 3, 1, 0, 1, 0, 0, 0, 0, 0, 0,
+  0, 1, 0, 0, 0, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+  0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0,
+  0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 1, 0, 0,
+  1, 0, 1, 0, 1, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 3, 3, 1,
+  0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+  1, 1, 0, 3, 3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 3, 3, 0, 0, 0, 1, 0,
+  0, 0, 0, 0, 1, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3,
+  3, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 3, 1, 0, 0, 0, 1, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 1, 3, 3, 3,
+];
+
 // loads intro screen
 function loadsIntro() {
   grid.classList.remove("grid");
@@ -118,6 +133,17 @@ function loadsIntro() {
     grid.classList.remove("aang-avatar-state");
     grid.classList.add("grid");
   }, 8000);
+}
+
+// play/pause game music
+function playPauseMusic() {
+  if (count == 0) {
+    count = 1;
+    gameMusic.play();
+  } else {
+    count = 0;
+    gameMusic.pause();
+  }
 }
 
 //create level
@@ -339,6 +365,62 @@ function createLevel5() {
   onLevel5 = true;
 }
 
+// create level 6
+function createLevel6() {
+  grid.classList.add("level6");
+
+  // this block sets a new starting position for this level
+  squares[playerCurrentIndex].classList.remove("player");
+  playerStartIndex = 18;
+  playerCurrentIndex = playerStartIndex;
+  squares[playerCurrentIndex].classList.add("player");
+
+  onLevel5 = false;
+  for (let i = 0; i < layoutLevel6.length; i++) {
+    const square = document.createElement("div");
+    grid.append(square);
+    squares.push(square);
+
+    if (layoutLevel6[i] === 1) {
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel5",
+        "goal",
+        "goalLevel5",
+        "deep-space"
+      );
+      squares[i].classList.add("wall", "wallLevel6");
+    } else if (layoutLevel6[i] === 2) {
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel5",
+        "goal",
+        "goalLevel5",
+        "deep-space"
+      );
+      squares[i].classList.add("goal", "goalLevel6");
+    } else if (layoutLevel6[i] === 3) {
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel5",
+        "goal",
+        "goalLevel5",
+        "deep-space"
+      );
+      squares[i].classList.add("deep-space");
+    } else if (layoutLevel6[i] === 0) {
+      squares[i].classList.remove(
+        "wall",
+        "wallLevel5",
+        "goal",
+        "goalLevel5",
+        "deep-space"
+      );
+    }
+  }
+  onLevel6 = true;
+}
+
 // create victory screen
 function createVictoryScreen() {
   grid.classList.add("victory-screen");
@@ -347,40 +429,40 @@ function createVictoryScreen() {
   playerStartIndex = 300;
   playerCurrentIndex = playerStartIndex;
 
-  for (let i = 0; i < layoutLevel5.length; i++) {
-    if (layoutLevel5[i] === 1) {
+  for (let i = 0; i < layoutLevel6.length; i++) {
+    if (layoutLevel6[i] === 1) {
       squares[i].classList.remove(
         "wall",
-        "wallLevel5",
+        "wallLevel6",
         "goal",
-        "goalLevel5",
+        "goalLevel6",
         "deep-space",
         "player"
       );
-    } else if (layoutLevel5[i] === 2) {
+    } else if (layoutLevel6[i] === 2) {
       squares[i].classList.remove(
         "wall",
-        "wallLevel5",
+        "wallLevel6",
         "goal",
-        "goalLevel5",
+        "goalLevel6",
         "deep-space",
         "player"
       );
-    } else if (layoutLevel5[i] === 3) {
+    } else if (layoutLevel6[i] === 3) {
       squares[i].classList.remove(
         "wall",
-        "wallLevel5",
+        "wallLevel6",
         "goal",
-        "goalLevel5",
+        "goalLevel6",
         "deep-space",
         "player"
       );
     } else if (layoutLevel5[i] === 0) {
       squares[i].classList.remove(
         "wall",
-        "wallLevel5",
+        "wallLevel6",
         "goal",
-        "goalLevel5",
+        "goalLevel6",
         "deep-space",
         "player"
       );
@@ -459,6 +541,8 @@ function movePlayer(e) {
       } else if (onLevel4) {
         createLevel5();
       } else if (onLevel5) {
+        createLevel6();
+      } else if (onLevel6) {
         createVictoryScreen();
       }
     }

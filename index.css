@@ -135,7 +135,7 @@ main {
 }
 
 .player {
-  background-image: url(./img/avatar.png);
+  background-image: url(./img/sokka.png);
   background-size: cover;
 }
 
@@ -216,6 +216,22 @@ main {
 
 .goalLevel5 {
   background-image: url(./img/vortex-fire.png);
+  background-size: cover;
+  animation: rotate 0.75s normal linear infinite;
+}
+
+.level6 {
+  background-image: url(./img/sunrise.png);
+  background-size: cover;
+}
+
+.wallLevel6 {
+  background-image: url(./img/wall-grass.png);
+  background-size: cover;
+}
+
+.goalLevel6 {
+  background-image: url(./img/vortex-earth.png);
   background-size: cover;
   animation: rotate 0.75s normal linear infinite;
 }
