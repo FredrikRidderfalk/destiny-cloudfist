@@ -426,7 +426,7 @@ function createVictoryScreen() {
   grid.classList.add("victory-screen");
 
   squares[playerCurrentIndex].classList.remove("player");
-  playerStartIndex = 300;
+  playerStartIndex = 400;
   playerCurrentIndex = playerStartIndex;
 
   for (let i = 0; i < layoutLevel6.length; i++) {
